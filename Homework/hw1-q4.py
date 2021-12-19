@@ -164,7 +164,7 @@ def plot(epochs, plottable, ylabel='', name=''):
     plt.xlabel('Epoch')
     plt.ylabel(ylabel)
     plt.plot(epochs, plottable)
-    plt.savefig(f'images/%s.pdf' % (name), bbox_inches='tight')
+    plt.savefig(f'images_q4/%s.pdf' % (name), bbox_inches='tight')
 
 
 def main():
