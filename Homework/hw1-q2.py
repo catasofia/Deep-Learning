@@ -109,7 +109,7 @@ class NeuralRegression(_RegressionModel):
 
         grad_z2 = np.asarray(z2 - y_i)
 
-        grad_w2 = grad_z2.dot(self.relu_derivate(a1)).T
+        grad_w2 = grad_z2.dot(a1).T
         grad_b2 = grad_z2
 
         grad_a1 = grad_z2.dot(self.w2.T)

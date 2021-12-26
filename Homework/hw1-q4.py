@@ -65,7 +65,25 @@ class FeedforwardNetwork(nn.Module):
         includes modules for several activation functions and dropout as well.
         """
         super().__init__()
-        # Implement me!
+        
+        self.hidden = nn.ModuleList()
+
+        activation_function = nn.ReLU() if activation_type == 'relu' else nn.Tanh()
+
+        if layers == 1:
+            self.hidden.append(nn.Linear(n_features, n_classes))
+        elif layers > 1:
+            for layer in range(layers):
+                if layer == 0:
+                    self.hidden.append(nn.Linear(n_features, hidden_size))
+                    self.hidden.append(activation_function)
+                elif layer != (layers - 1):
+                    self.hidden.append(nn.Linear(hidden_size, hidden_size))
+                    self.hidden.append(activation_function)
+                elif layer == (layers - 1):
+                    self.hidden.append(nn.Linear(hidden_size, n_classes))
+        
+        self.dropout = nn.Dropout(dropout)
 
     def forward(self, x, **kwargs):
         """
@@ -75,7 +93,11 @@ class FeedforwardNetwork(nn.Module):
         the output logits from x. This will include using various hidden
         layers, pointwise nonlinear functions, and dropout.
         """
-        raise NotImplementedError
+        
+        for hidden_layer in self.hidden:
+            x = hidden_layer(x)
+            x = self.dropout(x)
+        return x
 
 
 def train_batch(X, y, model, optimizer, criterion, **kwargs):
@@ -96,7 +118,13 @@ def train_batch(X, y, model, optimizer, criterion, **kwargs):
     This function should return the loss (tip: call loss.item()) to get the
     loss as a numerical value that is not part of the computation graph.
     """
-    raise NotImplementedError
+    optimizer.zero_grad()
+    output = model(X)
+    loss = criterion(output, y)
+    loss_item = loss.item()
+    loss.backward()
+    optimizer.step()
+    return loss_item
 
 
 def predict(model, X):
@@ -124,7 +152,7 @@ def plot(epochs, plottable, ylabel='', name=''):
     plt.xlabel('Epoch')
     plt.ylabel(ylabel)
     plt.plot(epochs, plottable)
-    plt.savefig('%s.pdf' % (name), bbox_inches='tight')
+    plt.savefig(f'images_q4/%s.pdf' % (name), bbox_inches='tight')
 
 
 def main():
