@@ -82,6 +82,16 @@ class NeuralRegression(_RegressionModel):
         regression model (for example, there will probably be one weight
         matrix per layer of the model).
         """
+        self.w1 = np.random.normal(0.1, 0.1, (n_features, hidden))
+        self.b1 = np.zeros((1, hidden))
+        self.w2 = np.random.normal(0.1, 0.1, (hidden, 1))
+        self.b2 = np.zeros((1,1))
+
+    def relu(self, vec):
+        return np.maximum(vec, 0)
+
+    def relu_derivate(self, vec):
+        return np.where(vec <= 0, 0, 1)
 
     def update_weight(self, x_i, y_i, learning_rate=0.001):
         """
@@ -89,7 +99,29 @@ class NeuralRegression(_RegressionModel):
 
         This function makes an update to the model weights
         """
-        raise NotImplementedError
+
+        x_i = np.reshape(x_i, (1, x_i.shape[0]))
+        
+        z1 = x_i.dot(self.w1) + self.b1
+        a1 = self.relu(z1)
+
+        z2 = a1.dot(self.w2) + self.b2
+
+        grad_z2 = np.asarray(z2 - y_i)
+
+        grad_w2 = grad_z2.dot(self.relu_derivate(a1)).T
+        grad_b2 = grad_z2
+
+        grad_a1 = grad_z2.dot(self.w2.T)
+        grad_z1 = grad_a1 * self.relu_derivate(z1)
+
+        grad_w1 = grad_z1.T.dot(x_i).T
+        grad_b1 = grad_z1
+
+        self.b2 -= learning_rate * grad_b2
+        self.w2 -= learning_rate * grad_w2
+        self.b1 -= learning_rate * grad_b1
+        self.w1 -= learning_rate * grad_w1
 
     def predict(self, X):
         """
@@ -103,7 +135,14 @@ class NeuralRegression(_RegressionModel):
         update_weight because it returns only the final output of the network,
         not any of the intermediate values needed to do backpropagation.
         """
-        raise NotImplementedError
+
+        y_hat = []
+        for x_i in X:
+            z1 = x_i.dot(self.w1) + self.b1
+            a1 = self.relu(z1)
+            z2 = a1.dot(self.w2) + self.b2
+            y_hat.append(z2.tolist()[0][0])
+        return y_hat
 
 
 def plot(epochs, train_loss, test_loss):
