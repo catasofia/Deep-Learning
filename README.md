@@ -30,15 +30,15 @@
 
 |   	| Loss  	| Accuracy   	|
 |:-	|:-:	|:-:	|
-| default  	|   <img src="https://user-images.githubusercontent.com/11770916/147472818-42a2e8a3-74ba-4bdd-9c00-7e77ab2eda9e.png" width="320" height="240"> 	|  <img src="https://user-images.githubusercontent.com/11770916/147472891-32e12a7e-bd98-4a18-b53f-2272c6fb73f7.png" width="320" height="240"> 	|
-| 2 layers  	|   	|   	|
-| 3 layers  	|   	|   	|
-| tanh activation  	|   	|   	|
-| dropout 0.5  	|   	|   	|
-| hidden size 100  	|   	|   	|
-| learning rate 0.001  	|   	|   	|
-| learning rate 0.1  	|   	|   	|
-| adam optimizer  	|   	|   	|
+| default  	|   <img src="https://github.com/miguel-arrf/DeepLearning-Course/blob/main/images_q4/default/q4_2_training-loss_default.png" width="320" height="240"> 	|  <img src="https://github.com/miguel-arrf/DeepLearning-Course/blob/main/images_q4/default/q4_2_validation-accuracy_default.png" width="320" height="240"> 	|
+| 2 layers  	|  <img src="https://user-images.githubusercontent.com/11770916/147473856-c1ce29b9-aa80-4ec0-aa60-ea1c5dbc8d41.png" width="320" height="240"> 	|   <img src="https://user-images.githubusercontent.com/11770916/147473885-dbfc936d-1b8e-4389-a084-34de1156dc66.png" width="320" height="240">	|
+| 3 layers  	|   <img src="https://raw.githubusercontent.com/miguel-arrf/DeepLearning-Course/main/images_q4/3_layers/q4_3_training-loss_3_layers.png" width="320" height="240"> 	|  <img src="https://raw.githubusercontent.com/miguel-arrf/DeepLearning-Course/main/images_q4/3_layers/q4_3_validation-accuracy_3_layers.png" width="320" height="240"> 	|
+| tanh activation  	|   <img src="https://raw.githubusercontent.com/miguel-arrf/DeepLearning-Course/main/images_q4/activation_tanh/q4_2_training-loss_tanh.png" width="320" height="240"> 	|  <img src="https://raw.githubusercontent.com/miguel-arrf/DeepLearning-Course/main/images_q4/activation_tanh/q4_2_validation-accuracy_tanh.png" width="320" height="240"> 	|
+| dropout 0.5  	|   <img src="https://raw.githubusercontent.com/miguel-arrf/DeepLearning-Course/main/images_q4/dropout_0_5/q4_2training-loss_0_5.png" width="320" height="240"> 	|  <img src="https://raw.githubusercontent.com/miguel-arrf/DeepLearning-Course/main/images_q4/dropout_0_5/q4_2validation-accuracy_0_5.png" width="320" height="240"> 	|
+| hidden size 100  	|   <img src="https://raw.githubusercontent.com/miguel-arrf/DeepLearning-Course/main/images_q4/hidden_size_100/q4_2_training-loss_100.png" width="320" height="240"> 	|  <img src="https://raw.githubusercontent.com/miguel-arrf/DeepLearning-Course/main/images_q4/hidden_size_100/q4_2validation-accuracy_100.png" width="320" height="240"> 	|
+| learning rate 0.001  	|   <img src="https://raw.githubusercontent.com/miguel-arrf/DeepLearning-Course/main/images_q4/learning_rate0_001/q4_2_training-loss_0_001.png" width="320" height="240"> 	|  <img src="https://raw.githubusercontent.com/miguel-arrf/DeepLearning-Course/main/images_q4/learning_rate0_001/q4_2_validation-accuracy_0_001.png" width="320" height="240"> 	|
+| learning rate 0.1  	|   <img src="https://raw.githubusercontent.com/miguel-arrf/DeepLearning-Course/main/images_q4/learning_rate0_1/q4_2_training-loss_0_1.png" width="320" height="240"> 	|  <img src="https://raw.githubusercontent.com/miguel-arrf/DeepLearning-Course/main/images_q4/learning_rate0_1/q4_2validation-accuracy_0_1.png" width="320" height="240"> 	|
+| adam optimizer  	|   <img src="https://raw.githubusercontent.com/miguel-arrf/DeepLearning-Course/main/images_q4/optimizer_adam/q4_2_training-loss_adam.png" width="320" height="240"> 	|  <img src="https://raw.githubusercontent.com/miguel-arrf/DeepLearning-Course/main/images_q4/optimizer_adam/q4_2_validation-accuracy_adam.png" width="320" height="240"> 	|
 
 
 *Version 0.1*
