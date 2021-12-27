@@ -15,6 +15,16 @@
 | ------------- |
 | <img src="https://raw.githubusercontent.com/miguel-arrf/DeepLearning-Course/main/images_q2/q2_2_b.png" width="320" height="240"> |
 
+
+---
+
+## Question 3:
+
+| 3.1.a -  Perceptron accuracy  | 3.1.b - Logistic regression accuracy |
+| ------------- | ------------- |
+| <img src="https://github.com/miguel-arrf/DeepLearning-Course/blob/main/images_q3/q3_1_a.png?raw=true" width="320" height="240">  | <img src="https://github.com/miguel-arrf/DeepLearning-Course/blob/main/images_q3/q3_1_b.png?raw=true" width="320" height="240">  |
+
+
 *Version 0.1*
 
 
