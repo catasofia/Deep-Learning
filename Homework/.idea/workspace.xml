@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7b97988e-032d-4fdb-b379-d456302a1bb2" name="Changes" comment="Added a missing image for q4-b (adam configuration)">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fashion-MNIST.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ames.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/download_fashion_mnist.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/environment.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hw1-q2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hw1-q3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hw1-q4.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q2/q2_2_a_dist.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q2/q2_2_a_loss.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q2/q2_2_b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q3/q3_1_a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q3/q3_1_b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/2_layers/q4_3_training-loss_2_layers.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/2_layers/q4_3_validation-accuracy_2_layers.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/3_layers/q4_3_training-loss_3_layers.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/3_layers/q4_3_validation-accuracy_3_layers.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/activation_tanh/q4_2_training-loss_tanh.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/activation_tanh/q4_2_validation-accuracy_tanh.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/default/q4_2_training-loss_default.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/default/q4_2_validation-accuracy_default.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/dropout_0_5/q4_2training-loss_0_5.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/dropout_0_5/q4_2validation-accuracy_0_5.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/hidden_size_100/q4_2_training-loss_100.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/hidden_size_100/q4_2validation-accuracy_100.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/learning_rate0_001/q4_2_training-loss_0_001.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/learning_rate0_001/q4_2_validation-accuracy_0_001.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/learning_rate0_1/q4_2_training-loss_0_1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/learning_rate0_1/q4_2validation-accuracy_0_1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/optimizer_adam/q4_2_training-loss_adam.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/optimizer_adam/q4_2_validation-accuracy_adam.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skeleton_code.tar.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="22CFWEZ2Md4XWojMlKsNHBNtGvR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.hw1-q4_0.1">
+    <configuration name="hw1-q2_linearRegression" type="PythonConfigurationType" factoryName="Python">
+      <module name="Homework" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hw1-q2.py" />
+      <option name="PARAMETERS" value="linear_regression" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hw1-q2_neuralNetwork" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Homework" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hw1-q2.py" />
+      <option name="PARAMETERS" value="nn" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hw1-q4_0.001" type="PythonConfigurationType" factoryName="Python" singleton="false">
+      <module name="Homework" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hw1-q4.py" />
+      <option name="PARAMETERS" value="logistic_regression -learning_rate 0.001" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hw1-q4_0.01" type="PythonConfigurationType" factoryName="Python" singleton="false" temporary="true">
+      <module name="Homework" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hw1-q4.py" />
+      <option name="PARAMETERS" value="logistic_regression -learning_rate 0.01" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hw1-q4_0.1" type="PythonConfigurationType" factoryName="Python" singleton="false">
+      <module name="Homework" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hw1-q4.py" />
+      <option name="PARAMETERS" value="logistic_regression -learning_rate 0.1" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="teste" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Homework" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/teste.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.hw1-q2_linearRegression" />
+      <item itemvalue="Python.hw1-q4_0.001" />
+      <item itemvalue="Python.hw1-q4_0.1" />
+      <item itemvalue="Python.hw1-q2_neuralNetwork" />
+      <item itemvalue="Python.hw1-q4_0.01" />
+      <item itemvalue="Python.teste" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.teste" />
+        <item itemvalue="Python.hw1-q4_0.01" />
+        <item itemvalue="Python.hw1-q2_neuralNetwork" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7b97988e-032d-4fdb-b379-d456302a1bb2" name="Changes" comment="" />
+      <created>1639333691788</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1639333691788</updated>
+      <workItem from="1639333693237" duration="14591000" />
+      <workItem from="1639356656384" duration="1000" />
+      <workItem from="1639392364348" duration="436000" />
+      <workItem from="1639399341797" duration="594000" />
+      <workItem from="1639580970201" duration="4883000" />
+      <workItem from="1639653586734" duration="514000" />
+      <workItem from="1639654692751" duration="6353000" />
+      <workItem from="1639677581320" duration="7636000" />
+      <workItem from="1639764855025" duration="14305000" />
+      <workItem from="1639921872981" duration="405000" />
+      <workItem from="1639929795840" duration="41000" />
+      <workItem from="1639929853691" duration="2076000" />
+      <workItem from="1640109363019" duration="571000" />
+      <workItem from="1640185340470" duration="5109000" />
+      <workItem from="1640201975622" duration="314000" />
+      <workItem from="1640263470482" duration="212000" />
+      <workItem from="1640299859386" duration="2970000" />
+      <workItem from="1640359119813" duration="906000" />
+      <workItem from="1640528696493" duration="2309000" />
+      <workItem from="1640536684237" duration="22000" />
+      <workItem from="1640606968715" duration="789000" />
+    </task>
+    <task id="LOCAL-00001" summary="Added question 4 resolution (I needed to do the question 4a, but I've already done the others since they were so easy... In case someone else from the group wants to do it, be my guest! I don't see any problem with that, this way I've already trained a bit of pytorch, it was quite easy anyway.)&#10;&#10;hw1-q2.py and hw1-q3.py already have some exercises done. I've done them as a personal exercise, even though we haven't selected who is going to do what.">
+      <created>1639930193135</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1639930193135</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added a missing image for q4-b (adam configuration)">
+      <created>1639932141303</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1639932141303</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Added question 4 resolution (I needed to do the question 4a, but I've already done the others since they were so easy... In case someone else from the group wants to do it, be my guest! I don't see any problem with that, this way I've already trained a bit of pytorch, it was quite easy anyway.)&#10;&#10;hw1-q2.py and hw1-q3.py already have some exercises done. I've done them as a personal exercise, even though we haven't selected who is going to do what." />
+    <MESSAGE value="Added a missing image for q4-b (adam configuration)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a missing image for q4-b (adam configuration)" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Homework$hw1_q4.coverage" NAME="hw1-q4 Coverage Results" MODIFIED="1639853126307" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Homework$hw1_q2.coverage" NAME="hw1-q2_neuralNetwork Coverage Results" MODIFIED="1639691796331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Homework$hw1_q2_linearRegression.coverage" NAME="hw1-q2_linearRegression Coverage Results" MODIFIED="1639685940651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Homework$teste.coverage" NAME="teste Coverage Results" MODIFIED="1639339585591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Homework$hw1_q4_0_1.coverage" NAME="hw1-q4_0.1 Coverage Results" MODIFIED="1639853252249" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Homework$hw1_q4_0_001.coverage" NAME="hw1-q4_0.001 Coverage Results" MODIFIED="1639853243219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Homework$hw1_q2_neuralNetwork.coverage" NAME="hw1-q2_neuralNetwork Coverage Results" MODIFIED="1639764861214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
