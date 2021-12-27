@@ -22,8 +22,7 @@ def solve_analytically(X, y):
 
     n_point, n_feat = X.shape
     lambda_r = 0.0001
-    return np.linalg.inv(X.T.dot(X) + lambda_r*np.identity(n_feat)).dot(X.transpose()).dot(y)
-
+    return np.linalg.inv(X.T.dot(X) + lambda_r * np.identity(n_feat)).dot(X.transpose()).dot(y)
 
 
 class _RegressionModel:
@@ -32,6 +31,7 @@ class _RegressionModel:
     LinearRegression and NeuralRegression classes. You should not need to alter
     this class!
     """
+
     def train_epoch(self, X, y, **kwargs):
         """
         Iterate over (x, y) pairs, compute the weight update for each of them.
@@ -66,32 +66,35 @@ class LinearRegression(_RegressionModel):
         self.w).
         """
         y_hat = self.predict(x_i)
-        self.w += learning_rate * (y_i - y_hat) * x_i 
+        self.w += learning_rate * (y_i - y_hat) * x_i
 
     def predict(self, X):
         return np.dot(X, self.w)
+
+
+def relu(vec):
+    return np.maximum(vec, 0)
+
+
+def relu_derivate(vec):
+    return np.where(vec <= 0, 0, 1)
 
 
 class NeuralRegression(_RegressionModel):
     """
     Q2.2b
     """
+
     def __init__(self, n_features, hidden):
         """
         In this __init__, you should define the weights of the neural
         regression model (for example, there will probably be one weight
         matrix per layer of the model).
         """
-        self.w1 = np.random.normal(0.1, 0.1, (n_features, hidden))
-        self.b1 = np.zeros((1, hidden))
-        self.w2 = np.random.normal(0.1, 0.1, (hidden, 1))
-        self.b2 = np.zeros((1,1))
-
-    def relu(self, vec):
-        return np.maximum(vec, 0)
-
-    def relu_derivate(self, vec):
-        return np.where(vec <= 0, 0, 1)
+        self.w1 = np.random.normal(0.1, 0.1, (hidden, n_features))
+        self.b1 = np.zeros((hidden, 1))
+        self.w2 = np.random.normal(0.1, 0.1, (1, hidden))
+        self.b2 = np.zeros((1, 1))
 
     def update_weight(self, x_i, y_i, learning_rate=0.001):
         """
@@ -100,28 +103,28 @@ class NeuralRegression(_RegressionModel):
         This function makes an update to the model weights
         """
 
-        x_i = np.reshape(x_i, (1, x_i.shape[0]))
-        
-        z1 = x_i.dot(self.w1) + self.b1
-        a1 = self.relu(z1)
+        def predict_inner(X):
+            z_1_inner = self.w1 @ X + self.b1
+            h_z_1 = relu(z_1_inner)
 
-        z2 = a1.dot(self.w2) + self.b2
+            z_2 = self.w2 @ h_z_1 + self.b2
+            return z_2
 
-        grad_z2 = np.asarray(z2 - y_i)
+        x_i = np.reshape(x_i, (x_i.shape[0], 1))
 
-        grad_w2 = grad_z2.dot(a1).T
-        grad_b2 = grad_z2
+        z_1 = (self.w1 @ x_i) + self.b1
+        y_hat_minus_y = np.asarray(predict_inner(x_i)) - y_i
 
-        grad_a1 = grad_z2.dot(self.w2.T)
-        grad_z1 = grad_a1 * self.relu_derivate(z1)
+        loss_w2 = y_hat_minus_y @ relu(z_1).T
+        loss_b2 = y_hat_minus_y
 
-        grad_w1 = grad_z1.T.dot(x_i).T
-        grad_b1 = grad_z1
+        loss_w1 = ((self.w2.T @ y_hat_minus_y) * relu_derivate(z_1)) @ x_i.T
+        loss_b1 = np.multiply(np.dot(self.w2.T, y_hat_minus_y), relu_derivate(z_1))
 
-        self.b2 -= learning_rate * grad_b2
-        self.w2 -= learning_rate * grad_w2
-        self.b1 -= learning_rate * grad_b1
-        self.w1 -= learning_rate * grad_w1
+        self.b2 = self.b2 - learning_rate * loss_b2
+        self.b1 = self.b1 - learning_rate * loss_b1
+        self.w2 = self.w2 - learning_rate * loss_w2
+        self.w1 = self.w1 - learning_rate * loss_w1
 
     def predict(self, X):
         """
@@ -135,14 +138,15 @@ class NeuralRegression(_RegressionModel):
         update_weight because it returns only the final output of the network,
         not any of the intermediate values needed to do backpropagation.
         """
-
         y_hat = []
         for x_i in X:
-            z1 = x_i.dot(self.w1) + self.b1
-            a1 = self.relu(z1)
-            z2 = a1.dot(self.w2) + self.b2
-            y_hat.append(z2.tolist()[0][0])
-        return y_hat
+            x_i = np.reshape(x_i, (x_i.shape[0], 1))
+            z_1 = self.w1 @ x_i + self.b1
+            h_z_1 = np.maximum(z_1, 0)
+            z_2 = self.w2 @ h_z_1 + self.b2
+            # This is the output, without any function, since we are on a regression problem!
+            y_hat.append(z_2.tolist()[0][0])
+        return list(y_hat)
 
 
 def plot(epochs, train_loss, test_loss):
