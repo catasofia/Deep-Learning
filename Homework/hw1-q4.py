@@ -29,7 +29,6 @@ class LogisticRegression(nn.Module):
         super().__init__()
         # In a pytorch module, the declarations of layers needs to come after
         # the super __init__ line, otherwise the magic doesn't work.
-        self.layer = torch.nn.Linear(in_features=n_features, out_features=n_classes, bias=True)
 
     def forward(self, x, **kwargs):
         """
@@ -45,17 +44,10 @@ class LogisticRegression(nn.Module):
         forward pass -- this is enough for it to figure out how to do the
         backward pass.
         """
-        return self.layer(x)
+        raise NotImplementedError
 
 
 # Q3.2
-def getActivation(activation_type):
-    if activation_type == 'relu':
-        return nn.ReLU()
-    elif activation_type == 'tanh':
-        return nn.Tanh()
-
-
 class FeedforwardNetwork(nn.Module):
     def __init__(
             self, n_classes, n_features, hidden_size, layers,
@@ -73,29 +65,24 @@ class FeedforwardNetwork(nn.Module):
         includes modules for several activation functions and dropout as well.
         """
         super().__init__()
-        # Implement me!
+        
         self.hidden = nn.ModuleList()
 
-        '''
-        if layers == 0:
-            self.hidden.append(nn.Linear(in_features=n_features, out_features=n_classes, bias=True))
-        el
-        '''
+        activation_function = nn.ReLU() if activation_type == 'relu' else nn.Tanh()
+
         if layers == 1:
-            self.hidden.append(nn.Linear(in_features=n_features, out_features=n_classes, bias=True))
-        elif layers >= 2:
+            self.hidden.append(nn.Linear(n_features, n_classes))
+        elif layers > 1:
             for layer in range(layers):
                 if layer == 0:
-                    # We are on the first layer
-                    self.hidden.append(nn.Linear(in_features=n_features, out_features=hidden_size, bias=True))
-                    self.hidden.append(getActivation(activation_type))
-                elif layer == layers - 1:
-                    # We are on the last one
-                    self.hidden.append(nn.Linear(in_features=hidden_size, out_features=n_classes, bias=True))
-                elif layer != 0 and layer != (layers - 1):
-                    self.hidden.append(nn.Linear(in_features=hidden_size, out_features=hidden_size, bias=True))
-                    self.hidden.append(getActivation(activation_type))
-
+                    self.hidden.append(nn.Linear(n_features, hidden_size))
+                    self.hidden.append(activation_function)
+                elif layer != (layers - 1):
+                    self.hidden.append(nn.Linear(hidden_size, hidden_size))
+                    self.hidden.append(activation_function)
+                elif layer == (layers - 1):
+                    self.hidden.append(nn.Linear(hidden_size, n_classes))
+        
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x, **kwargs):
@@ -106,8 +93,9 @@ class FeedforwardNetwork(nn.Module):
         the output logits from x. This will include using various hidden
         layers, pointwise nonlinear functions, and dropout.
         """
-        for layer in self.hidden:
-            x = layer(x)
+        
+        for hidden_layer in self.hidden:
+            x = hidden_layer(x)
             x = self.dropout(x)
         return x
 
@@ -124,7 +112,7 @@ def train_batch(X, y, model, optimizer, criterion, **kwargs):
     loss between these predictions and the "gold" labels y using the criterion,
     and compute the gradient of the loss with respect to the model parameters.
 
-        Check out https://pytorch.org/docs/stable/optim.html for examples of how
+    Check out https://pytorch.org/docs/stable/optim.html for examples of how
     to use an optimizer object to update the parameters.
 
     This function should return the loss (tip: call loss.item()) to get the
@@ -235,7 +223,7 @@ def main():
             train_losses.append(loss)
 
         mean_loss = torch.tensor(train_losses).mean().item()
-        print('Training loss: %.4f' % mean_loss)
+        print('Training loss: %.4f' % (mean_loss))
 
         train_mean_losses.append(mean_loss)
         valid_accs.append(evaluate(model, dev_X, dev_y))
@@ -243,22 +231,8 @@ def main():
 
     print('Final Test acc: %.4f' % (evaluate(model, test_X, test_y)))
     # plot
-    plot(epochs, train_mean_losses, ylabel='Loss', name='q4-train-loss-{}-{}-{}-{}-{}-{}-{}-{}-{}'
-         .format(opt.epochs,
-                 opt.learning_rate,
-                 opt.hidden_sizes,
-                 opt.dropout,
-                 opt.batch_size,
-                 opt.activation,
-                 opt.optimizer, opt.layers, opt.model))
-    plot(epochs, valid_accs, ylabel='Accuracy', name='q4-val-acc-{}-{}-{}-{}-{}-{}-{}-{}-{}'
-         .format(opt.epochs,
-                 opt.learning_rate,
-                 opt.hidden_sizes,
-                 opt.dropout,
-                 opt.batch_size,
-                 opt.activation,
-                 opt.optimizer, opt.layers, opt.model))
+    plot(epochs, train_mean_losses, ylabel='Loss', name='training-loss')
+    plot(epochs, valid_accs, ylabel='Accuracy', name='validation-accuracy')
 
 
 if __name__ == '__main__':

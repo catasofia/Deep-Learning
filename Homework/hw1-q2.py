@@ -1,8 +1,7 @@
 import argparse
 
-import matplotlib.pyplot as plt
 import numpy as np
-from numpy import linalg
+import matplotlib.pyplot as plt
 
 import utils
 
@@ -20,18 +19,11 @@ def solve_analytically(X, y):
     This function should return a vector of size n_features (the same size as
     the weight vector in the LinearRegression class).
     """
-    # theta = np.dot(np.dot(X.T, np.linalg.inv(np.dot(X, X.T))), y)
-    print("X Shape: ", X.shape)
-    # theta = X.T @ np.linalg.pinv(X @ X.T) @ y
 
-    theta = np.linalg.pinv(X.T @ X) @ X.T @ y
+    n_point, n_feat = X.shape
+    lambda_r = 0.0001
+    return np.linalg.inv(X.T.dot(X) + lambda_r*np.identity(n_feat)).dot(X.transpose()).dot(y)
 
-    # temp = np.zeros(X.shape)
-    # np.fill_diagonal(temp, np.power(10.0, -4))
-    # theta = np.linalg.inv((X.T @ X) + temp) @ X.T @ y
-
-    print("theta: ", theta.shape)
-    return theta
 
 
 class _RegressionModel:
@@ -40,7 +32,6 @@ class _RegressionModel:
     LinearRegression and NeuralRegression classes. You should not need to alter
     this class!
     """
-
     def train_epoch(self, X, y, **kwargs):
         """
         Iterate over (x, y) pairs, compute the weight update for each of them.
@@ -74,42 +65,33 @@ class LinearRegression(_RegressionModel):
         This function makes an update to the model weights (in other words,
         self.w).
         """
-        prediction = self.w.T @ x_i
-        self.w = self.w - learning_rate * (prediction - y_i) * x_i
+        y_hat = self.predict(x_i)
+        self.w += learning_rate * (y_i - y_hat) * x_i 
 
     def predict(self, X):
         return np.dot(X, self.w)
-
-
-def relu(vec):
-    return np.maximum(vec, 0)
-
-
-def derivate_relu(vec):
-    return np.where(vec <= 0, 0, 1)
 
 
 class NeuralRegression(_RegressionModel):
     """
     Q2.2b
     """
-
     def __init__(self, n_features, hidden):
         """
         In this __init__, you should define the weights of the neural
         regression model (for example, there will probably be one weight
         matrix per layer of the model).
         """
+        self.w1 = np.random.normal(0.1, 0.1, (n_features, hidden))
+        self.b1 = np.zeros((1, hidden))
+        self.w2 = np.random.normal(0.1, 0.1, (hidden, 1))
+        self.b2 = np.zeros((1,1))
 
-        # self.W_1 = np.zeros((hidden, n_features))
-        # self.W_2 = np.zeros((1, hidden))
-        # self.b_1 = np.random.normal(0.1, 0.1 * 0.1, (hidden, 1))
-        # self.b_2 = np.random.normal(0.1, 0.1 * 0.1, (1, 1))
+    def relu(self, vec):
+        return np.maximum(vec, 0)
 
-        self.W_1 = np.random.normal(0.1, 0.1, (hidden, n_features))
-        self.W_2 = np.random.normal(0.1, 0.1, (1, hidden))
-        self.b_1 = np.zeros((hidden, 1))
-        self.b_2 = np.zeros((1, 1))
+    def relu_derivate(self, vec):
+        return np.where(vec <= 0, 0, 1)
 
     def update_weight(self, x_i, y_i, learning_rate=0.001):
         """
@@ -118,34 +100,28 @@ class NeuralRegression(_RegressionModel):
         This function makes an update to the model weights
         """
 
-        def predict_inner(X):
-            z_1_inner = self.W_1 @ X + self.b_1
-            h_z_1 = relu(z_1_inner)
+        x_i = np.reshape(x_i, (1, x_i.shape[0]))
+        
+        z1 = x_i.dot(self.w1) + self.b1
+        a1 = self.relu(z1)
 
-            z_2 = self.W_2 @ h_z_1 + self.b_2
-            return z_2
+        z2 = a1.dot(self.w2) + self.b2
 
-        x_i = np.reshape(x_i, (x_i.shape[0], 1))
+        grad_z2 = np.asarray(z2 - y_i)
 
-        z_1 = (self.W_1 @ x_i) + self.b_1
-        y_hat_minus_y = np.asarray(predict_inner(x_i)) - y_i
+        grad_w2 = grad_z2.dot(a1).T
+        grad_b2 = grad_z2
 
-        loss_w_2 = y_hat_minus_y @ relu(z_1).T
-        loss_b_2 = y_hat_minus_y
+        grad_a1 = grad_z2.dot(self.w2.T)
+        grad_z1 = grad_a1 * self.relu_derivate(z1)
 
-        #print("y_hat: {}, W_2: {}, derivate: {}, x_i: {}".format(y_hat_minus_y.shape, self.W_2.shape, derivate_relu(z_1).shape, x_i.shape))
-        # loss_w_1 = y_hat_minus_y @ self.W_2 @ derivate_relu(z_1) @ x_i.T
+        grad_w1 = grad_z1.T.dot(x_i).T
+        grad_b1 = grad_z1
 
-        loss_w_1 = ((self.W_2.T @ y_hat_minus_y) * derivate_relu(z_1)) @ x_i.T
-        loss_b_1 = np.multiply(np.dot(self.W_2.T, y_hat_minus_y), derivate_relu(z_1))
-        # Using the other loss has better results!
-        # loss_b_1 = y_hat_minus_y @ self.W_2 @ derivate_relu(z_1)
-
-        self.b_2 = self.b_2 - learning_rate * loss_b_2
-        self.b_1 = self.b_1 - learning_rate * loss_b_1
-        self.W_2 = self.W_2 - learning_rate * loss_w_2
-        #print("w_1: {}, loss_w_1: {}".format(self.W_1.shape, loss_w_1.shape))
-        self.W_1 = self.W_1 - learning_rate * loss_w_1
+        self.b2 -= learning_rate * grad_b2
+        self.w2 -= learning_rate * grad_w2
+        self.b1 -= learning_rate * grad_b1
+        self.w1 -= learning_rate * grad_w1
 
     def predict(self, X):
         """
@@ -159,25 +135,14 @@ class NeuralRegression(_RegressionModel):
         update_weight because it returns only the final output of the network,
         not any of the intermediate values needed to do backpropagation.
         """
-        '''
-        print("W_1: {}, X: {}, b_1: {}".format(self.W_1.shape, X.shape, self.b_1.shape))
-        z_1 = self.W_1 @ X + self.b_1
-        h_z_1 = relu(z_1)
 
-        z_2 = self.W_2 @ h_z_1 + self.b_2
-        
-        return z_2
-        '''
-
-        to_return = []
-        for x in X:
-            x = np.reshape(x, (348, 1))
-            z_1 = self.W_1 @ x + self.b_1
-            h_z_1 = np.maximum(z_1, 0)
-            z_2 = self.W_2 @ h_z_1 + self.b_2
-            # This is the output, without any function, since we are on a regression problem!
-            to_return.append(z_2.tolist()[0][0])
-        return list(to_return)
+        y_hat = []
+        for x_i in X:
+            z1 = x_i.dot(self.w1) + self.b1
+            a1 = self.relu(z1)
+            z2 = a1.dot(self.w2) + self.b2
+            y_hat.append(z2.tolist()[0][0])
+        return y_hat
 
 
 def plot(epochs, train_loss, test_loss):
@@ -245,9 +210,7 @@ def main():
         model.train_epoch(train_X, train_y, learning_rate=opt.learning_rate)
 
         # Evaluate on the train and test data.
-        print("for epoch {} -> train_X: {}, train_y: {}".format(epoch, train_X.shape, train_y.shape))
         train_losses.append(model.evaluate(train_X, train_y))
-
         test_losses.append(model.evaluate(test_X, test_y))
 
         if analytic_solution is not None:

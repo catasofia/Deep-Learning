@@ -54,21 +54,11 @@ class Perceptron(LinearModel):
         other arguments are ignored
         """
         # Q3.1a
-        predicted_values = self.W @ x_i
-        arg_max = np.argmax(predicted_values)
-        print("w shape: ", x_i.shape)
-        if arg_max != y_i:
-            # The prediction was not correct!
-            for i in range(len(predicted_values)):
-                if i != y_i:
-                    # Decrease weight of incorrect class
-                    self.W[i] = self.W[i] - x_i
-                else:
-                    # Increase weight of gold class
-                    self.W[i] = self.W[i] + x_i
-
-        # print("predicted: ", predicted_values)
-        # raise NotImplementedError
+       
+        y_hat = self.predict(x_i)
+        if(y_hat != y_i):
+            self.W[y_i] += x_i
+            self.W[y_hat] -= x_i
 
 
 class LogisticRegression(LinearModel):
@@ -79,29 +69,16 @@ class LogisticRegression(LinearModel):
         learning_rate (float): keep it at the default value for your plots
         """
         # Q3.1b
-        x_i = np.reshape(x_i, (785, 1))
-        e_y = np.zeros((10, 1))
-        e_y[y_i] = 1
+        
+        label_scores = self.W.dot(x_i)[:, None]
+        
+        y_one_hot = np.zeros((np.size(self.W,0), 1))
+        y_one_hot[y_i] = 1
 
-        first = e_y @ x_i.T
+        label_probabilities = np.exp(label_scores) / np.sum(np.exp(label_scores))
 
-        def get_zero_vector_for_pos(pos):
-            to_return = np.zeros((10, 1))
-            to_return[pos] = 1
-            return to_return
+        self.W +=  learning_rate * (y_one_hot - label_probabilities) * x_i[None, :]
 
-        temp = []
-        for i in range(10):
-            to_add = np.exp(self.W[i] @ x_i)
-            to_divide = 0
-            for j in range(10):
-                to_divide = np.add(to_divide, np.exp(self.W[j] @ x_i))
-            to_add = np.divide(to_add, to_divide)
-            temp.append(to_add)
-
-        second = np.asarray(temp) @ x_i.T
-
-        self.W = self.W + learning_rate * (first - second)
 
 
 class MLP(object):
