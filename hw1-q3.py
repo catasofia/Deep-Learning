@@ -54,11 +54,10 @@ class Perceptron(LinearModel):
         other arguments are ignored
         """
         # Q3.1a
-       
-        y_hat = self.predict(x_i)
-        if(y_hat != y_i):
-            self.W[y_i] += x_i
-            self.W[y_hat] -= x_i
+        y_hat = self.predict(x_i) 
+        if y_hat != y_i:
+            self.W[y_i] = self.W[y_i] + x_i
+            self.W[y_hat] = self.W[y_hat] - x_i
 
 
 class LogisticRegression(LinearModel):
@@ -69,32 +68,44 @@ class LogisticRegression(LinearModel):
         learning_rate (float): keep it at the default value for your plots
         """
         # Q3.1b
-        
-        label_scores = self.W.dot(x_i)[:, None]
-        
-        y_one_hot = np.zeros((np.size(self.W,0), 1))
+        label_scores = self.W.dot(x_i)[:,None]
+        y_one_hot = np.zeros((np.size(self.W,0),1))
         y_one_hot[y_i] = 1
-
-        label_probabilities = np.exp(label_scores) / np.sum(np.exp(label_scores))
-
-        self.W +=  learning_rate * (y_one_hot - label_probabilities) * x_i[None, :]
-
-
-
+        label_probs = np.exp(label_scores) / np.sum(np.exp(label_scores))
+        self.W += learning_rate * (y_one_hot - label_probs) * x_i[None,:]
+        
+import math
 class MLP(object):
+    
+    def relu(self,z):
+        return np.maximum(0,z)
+    def sigmoid(self,x):
+        sig = 1 / (1 + math.exp(-x))
+        return sig
+    def sigmoid_d(self,x):
+        f = 1/(1+math.exp(-x))
+        return (f * (1-f))
+    
     # Q3.2b. This MLP skeleton code allows the MLP to be used in place of the
     # linear models with no changes to the training loop or evaluation code
     # in main().
     def __init__(self, n_classes, n_features, hidden_size):
         # Initialize an MLP with a single hidden layer.
-        raise NotImplementedError
+        self.W0 = np.random.normal(size=(hidden_size, n_features), loc=0.1, scale=0.1)
+        self.W1 = np.random.normal(size=(n_classes, hidden_size),loc=0.1, scale=0.1)
+        self.b0 = np.zeros((hidden_size,1))
+        self.b1 = np.zeros((n_classes,1))
+
 
     def predict(self, X):
         # Compute the forward pass of the network. At prediction time, there is
         # no need to save the values of hidden nodes, whereas this is required
         # at training time.
-        raise NotImplementedError
+        scores = np.dot(self.W0, X.T)  # (n_classes x n_examples)
+        predicted_labels = scores.argmax(axis=0)  # (n_examples)
+        return predicted_labels
 
+        
     def evaluate(self, X, y):
         """
         X (n_examples x n_features)
@@ -107,7 +118,47 @@ class MLP(object):
         return n_correct / n_possible
 
     def train_epoch(self, X, y, learning_rate=0.001):
-        raise NotImplementedError
+        for x_i, y_i in zip(X, y):
+            #y_hat = self.predict(x_i[:,None])
+            x_i = x_i[:,None]
+            a0 = x_i
+            z0 = np.dot(self.W0,x_i) + self.b0
+            a1 = self.relu(z0) #RELU
+            z1 = np.dot(self.W1,a1) + self.b1
+            z1 -= z1.max()
+            
+            predicted_labels = np.zeros_like(z1)
+            predicted_labels[np.argmax(z1)] = 1
+            y_hat = predicted_labels
+            
+            
+            a2 = np.exp(z1)/np.sum(np.exp(z1)) #SOFTMAX
+            
+            y_encode = self.encode_y(y_i,a2)
+            #loss = -np.dot(y,np.log(y_hat))
+            grad_z1 = y_hat - y_encode
+        
+            grad_w1 = np.dot(grad_z1,(a1.T))
+ 
+            grad_b1 = grad_z1
+            
+            grad_a1 = np.dot(self.W1.T,grad_z1)
+
+            relu_d = [(1 if e>=0 else 0) for e in z0]
+            relu_d = np.array(relu_d)[:,None]
+            grad_z0 = grad_a1 * relu_d
+        
+            grad_w0 = np.dot(grad_z0,(a0.T))
+            grad_b0 = grad_z0
+            self.W1 -= learning_rate*grad_w1
+            self.b1 -= learning_rate*grad_b1
+            self.W0 -= learning_rate*grad_w0
+            self.b0 -= learning_rate*grad_b0
+            #print(self.b0)
+    def encode_y(self,y,shape):
+        y_encoded = np.zeros_like(shape)
+        y_encoded[y] = 1
+        return y_encoded
 
 
 def plot(epochs, valid_accs, test_accs):
@@ -125,7 +176,7 @@ def main():
     parser.add_argument('model',
                         choices=['perceptron', 'logistic_regression', 'mlp'],
                         help="Which model should the script run?")
-    parser.add_argument('-epochs', default=20, type=int,
+    parser.add_argument('-epochs', default=2, type=int,
                         help="""Number of epochs to train for. You should not
                         need to change this value for your plots.""")
     parser.add_argument('-hidden_size', type=int, default=200,
@@ -156,7 +207,7 @@ def main():
     elif opt.model == 'logistic_regression':
         model = LogisticRegression(n_classes, n_feats)
     else:
-        model = MLP(n_classes, n_feats, opt.hidden_size, opt.layers)
+        model = MLP(n_classes, n_feats, opt.hidden_size)
     epochs = np.arange(1, opt.epochs + 1)
     valid_accs = []
     test_accs = []
