@@ -71,19 +71,26 @@ class FeedforwardNetwork(nn.Module):
         activation_function = nn.ReLU() if activation_type == 'relu' else nn.Tanh()
 
         if layers == 1:
-            self.hidden.append(nn.Linear(n_features, n_classes))
+            self.hidden.append(nn.Linear(n_features, hidden_size))
+            self.hidden.append(nn.Dropout(dropout))
+            self.hidden.append(activation_function)
+            self.hidden.append(nn.Linear(hidden_size, n_classes))
         elif layers > 1:
             for layer in range(layers):
                 if layer == 0:
                     self.hidden.append(nn.Linear(n_features, hidden_size))
+                    self.hidden.append(nn.Dropout(dropout))
                     self.hidden.append(activation_function)
                 elif layer != (layers - 1):
                     self.hidden.append(nn.Linear(hidden_size, hidden_size))
+                    self.hidden.append(nn.Dropout(dropout))
                     self.hidden.append(activation_function)
                 elif layer == (layers - 1):
+                    self.hidden.append(nn.Linear(hidden_size, hidden_size))
+                    self.hidden.append(nn.Dropout(dropout))
+                    self.hidden.append(activation_function)
                     self.hidden.append(nn.Linear(hidden_size, n_classes))
         
-        self.dropout = nn.Dropout(dropout)
 
     def forward(self, x, **kwargs):
         """
@@ -93,10 +100,9 @@ class FeedforwardNetwork(nn.Module):
         the output logits from x. This will include using various hidden
         layers, pointwise nonlinear functions, and dropout.
         """
-        
-        for hidden_layer in self.hidden:
+
+        for hidden_layer in self.hidden:  
             x = hidden_layer(x)
-            x = self.dropout(x)
         return x
 
 
