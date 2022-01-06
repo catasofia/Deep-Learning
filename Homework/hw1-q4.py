@@ -29,6 +29,7 @@ class LogisticRegression(nn.Module):
         super().__init__()
         # In a pytorch module, the declarations of layers needs to come after
         # the super __init__ line, otherwise the magic doesn't work.
+        self.linear = nn.Linear(n_features, n_classes)
 
     def forward(self, x, **kwargs):
         """
@@ -44,7 +45,7 @@ class LogisticRegression(nn.Module):
         forward pass -- this is enough for it to figure out how to do the
         backward pass.
         """
-        raise NotImplementedError
+        return self.linear(x)
 
 
 # Q3.2
@@ -72,23 +73,23 @@ class FeedforwardNetwork(nn.Module):
 
         if layers == 1:
             self.hidden.append(nn.Linear(n_features, hidden_size))
+            self.hidden.append(activation_function)      
             self.hidden.append(nn.Dropout(dropout))
-            self.hidden.append(activation_function)
             self.hidden.append(nn.Linear(hidden_size, n_classes))
         elif layers > 1:
             for layer in range(layers):
                 if layer == 0:
                     self.hidden.append(nn.Linear(n_features, hidden_size))
-                    self.hidden.append(nn.Dropout(dropout))
                     self.hidden.append(activation_function)
+                    self.hidden.append(nn.Dropout(dropout))
                 elif layer != (layers - 1):
                     self.hidden.append(nn.Linear(hidden_size, hidden_size))
-                    self.hidden.append(nn.Dropout(dropout))
                     self.hidden.append(activation_function)
+                    self.hidden.append(nn.Dropout(dropout))
                 elif layer == (layers - 1):
                     self.hidden.append(nn.Linear(hidden_size, hidden_size))
-                    self.hidden.append(nn.Dropout(dropout))
                     self.hidden.append(activation_function)
+                    self.hidden.append(nn.Dropout(dropout))
                     self.hidden.append(nn.Linear(hidden_size, n_classes))
         
 
@@ -158,7 +159,7 @@ def plot(epochs, plottable, ylabel='', name=''):
     plt.xlabel('Epoch')
     plt.ylabel(ylabel)
     plt.plot(epochs, plottable)
-    plt.savefig(f'images_q4/%s.pdf' % (name), bbox_inches='tight')
+    plt.savefig(f'images_q4_1/%s.pdf' % (name), bbox_inches='tight')
 
 
 def main():
