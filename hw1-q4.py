@@ -8,6 +8,7 @@ import torch
 from torch.utils.data import DataLoader
 import torch.nn as nn
 from matplotlib import pyplot as plt
+import shlex
 
 import utils
 
@@ -29,6 +30,7 @@ class LogisticRegression(nn.Module):
         super().__init__()
         # In a pytorch module, the declarations of layers needs to come after
         # the super __init__ line, otherwise the magic doesn't work.
+        self.linear = torch.nn.Linear(n_features, n_classes)
 
     def forward(self, x, **kwargs):
         """
@@ -44,7 +46,7 @@ class LogisticRegression(nn.Module):
         forward pass -- this is enough for it to figure out how to do the
         backward pass.
         """
-        raise NotImplementedError
+        return self.linear(x)
 
 
 # Q3.2
@@ -68,22 +70,16 @@ class FeedforwardNetwork(nn.Module):
         
         self.hidden = nn.ModuleList()
 
-        activation_function = nn.ReLU() if activation_type == 'relu' else nn.Tanh()
+        for i in range(layers):
+            if i == 0:
+                self.hidden.append(nn.Linear(n_features, hidden_size))
+            else:
+                self.hidden.append(nn.Linear(hidden_size, hidden_size))
 
-        if layers == 1:
-            self.hidden.append(nn.Linear(n_features, n_classes))
-        elif layers > 1:
-            for layer in range(layers):
-                if layer == 0:
-                    self.hidden.append(nn.Linear(n_features, hidden_size))
-                    self.hidden.append(activation_function)
-                elif layer != (layers - 1):
-                    self.hidden.append(nn.Linear(hidden_size, hidden_size))
-                    self.hidden.append(activation_function)
-                elif layer == (layers - 1):
-                    self.hidden.append(nn.Linear(hidden_size, n_classes))
-        
-        self.dropout = nn.Dropout(dropout)
+            self.hidden.append(nn.ReLU() if activation_type == 'relu' else nn.Tanh())
+            self.hidden.append(nn.Dropout(p=dropout))
+
+        self.hidden.append(nn.Linear(hidden_size, n_classes))# Last layer
 
     def forward(self, x, **kwargs):
         """
@@ -93,10 +89,8 @@ class FeedforwardNetwork(nn.Module):
         the output logits from x. This will include using various hidden
         layers, pointwise nonlinear functions, and dropout.
         """
-        
-        for hidden_layer in self.hidden:
-            x = hidden_layer(x)
-            x = self.dropout(x)
+        for layer in self.hidden:
+            x = layer(x)
         return x
 
 
@@ -152,10 +146,10 @@ def plot(epochs, plottable, ylabel='', name=''):
     plt.xlabel('Epoch')
     plt.ylabel(ylabel)
     plt.plot(epochs, plottable)
-    plt.savefig(f'images_q4/%s.pdf' % (name), bbox_inches='tight')
+    plt.savefig(f'images_q4/%s.png' % (name), bbox_inches='tight')
 
 
-def main():
+def main(args):
     parser = argparse.ArgumentParser()
     parser.add_argument('model',
                         choices=['logistic_regression', 'mlp'],
@@ -174,7 +168,9 @@ def main():
                         choices=['tanh', 'relu'], default='relu')
     parser.add_argument('-optimizer',
                         choices=['sgd', 'adam'], default='sgd')
-    opt = parser.parse_args()
+    parser.add_argument('-prefix', default="")
+    opt = parser.parse_args(shlex.split(argumentos))
+    print("args: ", opt)
 
     utils.configure_seed(seed=42)
 
@@ -231,9 +227,31 @@ def main():
 
     print('Final Test acc: %.4f' % (evaluate(model, test_X, test_y)))
     # plot
-    plot(epochs, train_mean_losses, ylabel='Loss', name='training-loss')
-    plot(epochs, valid_accs, ylabel='Accuracy', name='validation-accuracy')
+    plot(epochs, train_mean_losses, ylabel='Loss', name="{}-training-loss".format(opt.prefix))
+    plot(epochs, valid_accs, ylabel='Accuracy', name="{}-validation-accuracy".format(opt.prefix))
 
 
 if __name__ == '__main__':
-    main()
+    #default = 'mlp -prefix=default'
+    #dropout_05 = 'mlp -dropout=0.5 -prefix=0_5-dropout'
+    #hidden_size_100='mlp -hidden_sizes=100 -prefix=hiddenSize-100'
+    #learning_rate_0_1='mlp -learning_rate=0.1 -prefix=0_1-learningRate'
+    #learning_rate_0_001='mlp -learning_rate=0.001 -prefix=0_001-learningRate'
+    #layers_3 = 'mlp -layers=3 -prefix=3-layers'
+    #activationTanh = 'mlp -activation=tanh -prefix=tanh'
+
+    #main(args=default)
+    #main(args=dropout_05)
+    #main(args=hidden_size_100)
+    #main(args=learning_rate_0_1)
+    #main(args=learning_rate_0_001)
+    #main(args=layers_3)
+    #main(args=activationTanh)
+
+    logisticRegression_0_1 = 'logistic_regression -learning_rate=0.1 -prefix=0_1-learningRate'
+    #logisticRegression_0_01 = 'logistic_regression -learning_rate=0.01 -prefix=0_01-learningRate'
+    logisticRegression_0_001 = 'logistic_regression -learning_rate=0.001 -prefix=0_001-learningRate'
+
+    main(args=logisticRegression_0_1)
+    #main(args=logisticRegression_0_01)
+    main(args=logisticRegression_0_001)

@@ -8,6 +8,7 @@ import os
 
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.special import softmax
 
 import utils
 
@@ -80,6 +81,14 @@ class LogisticRegression(LinearModel):
         self.W +=  learning_rate * (y_one_hot - label_probabilities) * x_i[None, :]
 
 
+def relu(vec):
+    return np.maximum(vec, 0)
+
+
+
+def relu_derivate(vec):
+    return np.where(vec <= 0, 0, 1)
+
 
 class MLP(object):
     # Q3.2b. This MLP skeleton code allows the MLP to be used in place of the
@@ -87,13 +96,35 @@ class MLP(object):
     # in main().
     def __init__(self, n_classes, n_features, hidden_size):
         # Initialize an MLP with a single hidden layer.
-        raise NotImplementedError
+        self.w1 = np.random.normal(0.1, 0.1, (hidden_size, n_features))
+        self.b1 = np.zeros((hidden_size, 1))
+        self.w2 = np.random.normal(0.1, 0.1, (n_classes, hidden_size))
+        self.b2 = np.zeros((n_classes, 1))
 
     def predict(self, X):
         # Compute the forward pass of the network. At prediction time, there is
         # no need to save the values of hidden nodes, whereas this is required
         # at training time.
-        raise NotImplementedError
+        y_hat = []
+        for x_i in X:
+            x_i = np.reshape(x_i, (x_i.shape[0], 1))
+            z_1 = np.dot(self.w1, x_i) + self.b1
+            h_1 = np.maximum(z_1, 0)
+            z_2 = np.dot(self.w2, h_1) + self.b2
+            y_hat.append(np.argmax(softmax(z_2)))
+
+        '''
+        prediction = []
+        for h_2 in z_2:
+            #softmaxes = []
+            #for h_2_i in h_2:
+            #    softmaxes.append(np.exp(h_2_i)/ np.sum(np.exp(h_2)))
+            #prediction.append(np.argmax(softmaxes))
+            prediction.append(np.argmax(softmax(h_2)))
+
+        return prediction
+        '''
+        return y_hat
 
     def evaluate(self, X, y):
         """
@@ -107,7 +138,36 @@ class MLP(object):
         return n_correct / n_possible
 
     def train_epoch(self, X, y, learning_rate=0.001):
-        raise NotImplementedError
+
+        def predict_inner(value):
+            z_1_inner = self.w1 @ value + self.b1
+            h_z_1 = relu(z_1_inner)
+
+            z_2 = self.w2 @ h_z_1 + self.b2
+            return softmax(z_2)
+            #return z_2
+
+        for x_i, y_i in zip(X, y):
+
+            x_i = np.reshape(x_i, (x_i.shape[0], 1))
+
+            z_1 = (self.w1 @ x_i) + self.b1
+
+            encoded_y_i = np.zeros((10, 1))
+            encoded_y_i[y_i] = 1
+
+            y_hat_minus_y = np.asarray(predict_inner(x_i)) - encoded_y_i
+
+            loss_w2 = y_hat_minus_y @ relu(z_1).T
+            loss_b2 = y_hat_minus_y
+
+            loss_w1 = ((self.w2.T @ y_hat_minus_y) * relu_derivate(z_1)) @ x_i.T
+            loss_b1 = np.multiply(np.dot(self.w2.T, y_hat_minus_y), relu_derivate(z_1))
+
+            self.b2 = self.b2 - learning_rate * loss_b2
+            self.b1 = self.b1 - learning_rate * loss_b1
+            self.w2 = self.w2 - learning_rate * loss_w2
+            self.w1 = self.w1 - learning_rate * loss_w1
 
 
 def plot(epochs, valid_accs, test_accs):
@@ -117,7 +177,6 @@ def plot(epochs, valid_accs, test_accs):
     plt.plot(epochs, valid_accs, label='validation')
     plt.plot(epochs, test_accs, label='test')
     plt.legend()
-    plt.show()
 
 
 def main():
@@ -156,7 +215,7 @@ def main():
     elif opt.model == 'logistic_regression':
         model = LogisticRegression(n_classes, n_feats)
     else:
-        model = MLP(n_classes, n_feats, opt.hidden_size, opt.layers)
+        model = MLP(n_classes, n_feats, opt.hidden_size)
     epochs = np.arange(1, opt.epochs + 1)
     valid_accs = []
     test_accs = []
@@ -170,12 +229,25 @@ def main():
             train_y,
             learning_rate=opt.learning_rate
         )
-        valid_accs.append(model.evaluate(dev_X, dev_y))
-        test_accs.append(model.evaluate(test_X, test_y))
+        devAccuracy = model.evaluate(dev_X, dev_y)
+        testAccuracy = model.evaluate(test_X, test_y)
+        valid_accs.append(devAccuracy)
+        test_accs.append(testAccuracy)
+        print("Epoch {}: {}".format(i,devAccuracy ))
 
     # plot
-    plot(epochs, valid_accs, test_accs)
+    print("epochs:")
+    print(epochs)
 
+    print("valid_accs:")
+    print(valid_accs)
+
+    print("test_accs:")
+    print(test_accs)
+
+    plot(epochs, valid_accs, test_accs)
+    plt.savefig(f'images_q3/%s.png' % opt.model, bbox_inches='tight')
+    plt.show()
 
 if __name__ == '__main__':
     main()

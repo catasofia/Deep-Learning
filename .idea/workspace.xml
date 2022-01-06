@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="53301f04-a2d0-4e5b-9cbf-af2c7427145f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/hw1-q3.py" beforeDir="false" afterPath="$PROJECT_DIR$/hw1-q3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hw1-q4.py" beforeDir="false" afterPath="$PROJECT_DIR$/hw1-q4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q3/q3_1_a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q3/q3_1_b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/2_layers/q4_3_training-loss_2_layers.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/2_layers/q4_3_validation-accuracy_2_layers.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/3_layers/q4_3_training-loss_3_layers.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/3_layers/q4_3_validation-accuracy_3_layers.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/activation_tanh/q4_2_training-loss_tanh.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/activation_tanh/q4_2_validation-accuracy_tanh.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/default/q4_2_training-loss_default.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/default/q4_2_validation-accuracy_default.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/dropout_0_5/q4_2training-loss_0_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/dropout_0_5/q4_2validation-accuracy_0_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/hidden_size_100/q4_2_training-loss_100.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/hidden_size_100/q4_2validation-accuracy_100.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/learning_rate0_001/q4_2_training-loss_0_001.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/learning_rate0_001/q4_2_validation-accuracy_0_001.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/learning_rate0_1/q4_2_training-loss_0_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/learning_rate0_1/q4_2validation-accuracy_0_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/optimizer_adam/q4_2_training-loss_adam.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_q4/optimizer_adam/q4_2_validation-accuracy_adam.png" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="22rtyJsA97RwGqkIhilpU7Ti3x2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager" selected="Python.hw1-q4">
+    <configuration name="hw1-q3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/opt/anaconda3/envs/IST_DL21_Env/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hw1-q3.py" />
+      <option name="PARAMETERS" value="mlp" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hw1-q3_logisticRegression" type="PythonConfigurationType" factoryName="Python" singleton="false">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/opt/anaconda3/envs/IST_DL21_Env/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hw1-q3.py" />
+      <option name="PARAMETERS" value="logistic_regression" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hw1-q3_perceptron" type="PythonConfigurationType" factoryName="Python" singleton="false">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/opt/anaconda3/envs/IST_DL21_Env/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hw1-q3.py" />
+      <option name="PARAMETERS" value="perceptron" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hw1-q4-others" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/opt/anaconda3/envs/IST_DL21_Env/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hw1-q4-others.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hw1-q4" type="PythonConfigurationType" factoryName="Python" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/opt/anaconda3/envs/IST_DL21_Env/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hw1-q4.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.hw1-q3_perceptron" />
+      <item itemvalue="Python.hw1-q3_logisticRegression" />
+      <item itemvalue="Python.hw1-q3" />
+      <item itemvalue="Python.hw1-q4" />
+      <item itemvalue="Python.hw1-q4-others" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.hw1-q4" />
+        <item itemvalue="Python.hw1-q4-others" />
+        <item itemvalue="Python.hw1-q3" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="53301f04-a2d0-4e5b-9cbf-af2c7427145f" name="Changes" comment="" />
+      <created>1640607787499</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1640607787499</updated>
+      <workItem from="1640607790161" duration="568000" />
+      <workItem from="1640624150943" duration="359000" />
+      <workItem from="1640629437785" duration="1093000" />
+      <workItem from="1640787098793" duration="312000" />
+      <workItem from="1640864270384" duration="203000" />
+      <workItem from="1640864484359" duration="500000" />
+      <workItem from="1640865241222" duration="339000" />
+      <workItem from="1641130304057" duration="500000" />
+      <workItem from="1641143399126" duration="3878000" />
+      <workItem from="1641147784637" duration="890000" />
+      <workItem from="1641152999699" duration="499000" />
+      <workItem from="1641214950209" duration="240000" />
+      <workItem from="1641215236875" duration="16000" />
+      <workItem from="1641215503471" duration="2745000" />
+      <workItem from="1641229814363" duration="46000" />
+      <workItem from="1641394418433" duration="17532000" />
+      <workItem from="1641436883195" duration="1233000" />
+      <workItem from="1641470670887" duration="11011000" />
+      <workItem from="1641487636551" duration="1433000" />
+      <workItem from="1641499492270" duration="826000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/DeepLearning_Course$hw1_q4.coverage" NAME="hw1-q4 Coverage Results" MODIFIED="1641499985442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DeepLearning_Course$hw1_q4_others.coverage" NAME="hw1-q4-others Coverage Results" MODIFIED="1641487949100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DeepLearning_Course$hw1_q3.coverage" NAME="hw1-q3 Coverage Results" MODIFIED="1641420232810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DeepLearning_Course$hw1_q3_logisticRegression.coverage" NAME="hw1-q3_logisticRegression Coverage Results" MODIFIED="1641420231522" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DeepLearning_Course$hw1_q3_perceptron.coverage" NAME="hw1-q3_perceptron Coverage Results" MODIFIED="1641420210635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
