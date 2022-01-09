@@ -82,9 +82,9 @@ class NeuralRegression(_RegressionModel):
         regression model (for example, there will probably be one weight
         matrix per layer of the model).
         """
-        self.w1 = np.random.normal(0.1, 0.1, (n_features, hidden))
-        self.b1 = np.zeros((1, hidden))
-        self.w2 = np.random.normal(0.1, 0.1, (hidden, 1))
+        self.w1 = np.random.normal(0.1, 0.1, (hidden, n_features))
+        self.b1 = np.zeros((hidden, 1))
+        self.w2 = np.random.normal(0.1, 0.1, (1, hidden))
         self.b2 = np.zeros((1,1))
 
     def relu(self, vec):
@@ -100,22 +100,21 @@ class NeuralRegression(_RegressionModel):
         This function makes an update to the model weights
         """
 
-        x_i = np.reshape(x_i, (1, x_i.shape[0]))
+        x_i = np.reshape(x_i, (x_i.shape[0], 1))
         
-        z1 = x_i.dot(self.w1) + self.b1
+        z1 = self.w1.dot(x_i) + self.b1
         a1 = self.relu(z1)
 
-        z2 = a1.dot(self.w2) + self.b2
+        z2 = self.w2.dot(a1) + self.b2
 
         grad_z2 = np.asarray(z2 - y_i)
 
-        grad_w2 = grad_z2.dot(a1).T
+        grad_w2 = grad_z2.dot(a1.T)
         grad_b2 = grad_z2
 
-        grad_a1 = grad_z2.dot(self.w2.T)
+        grad_a1 = self.w2.T.dot(grad_z2)
         grad_z1 = grad_a1 * self.relu_derivate(z1)
-
-        grad_w1 = grad_z1.T.dot(x_i).T
+        grad_w1 = grad_z1.dot(x_i.T)
         grad_b1 = grad_z1
 
         self.b2 -= learning_rate * grad_b2
@@ -138,9 +137,10 @@ class NeuralRegression(_RegressionModel):
 
         y_hat = []
         for x_i in X:
-            z1 = x_i.dot(self.w1) + self.b1
+            x_i = np.reshape(x_i, (x_i.shape[0], 1))
+            z1 = self.w1.dot(x_i) + self.b1
             a1 = self.relu(z1)
-            z2 = a1.dot(self.w2) + self.b2
+            z2 = self.w2.dot(a1) + self.b2
             y_hat.append(z2.tolist()[0][0])
         return y_hat
 
