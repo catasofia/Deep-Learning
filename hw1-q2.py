@@ -112,7 +112,7 @@ class NeuralRegression(_RegressionModel):
 
         x_i = np.reshape(x_i, (x_i.shape[0], 1))
 
-        z_1 = (self.w1 @ x_i) + self.b1
+        z_1 = np.dot(self.w1, x_i) + self.b1
         y_hat_minus_y = np.asarray(predict_inner(x_i)) - y_i
 
         loss_w2 =np.dot(y_hat_minus_y, relu(z_1).T)
@@ -141,9 +141,9 @@ class NeuralRegression(_RegressionModel):
         y_hat = []
         for x_i in X:
             x_i = np.reshape(x_i, (x_i.shape[0], 1))
-            z_1 = self.w1 @ x_i + self.b1
+            z_1 = np.dot(self.w1, x_i) + self.b1
             h_z_1 = np.maximum(z_1, 0)
-            z_2 = self.w2 @ h_z_1 + self.b2
+            z_2 = np.dot(self.w2, h_z_1) + self.b2
             # This is the output, without any function, since we are on a regression problem!
             y_hat.append(z_2.tolist()[0][0])
         return list(y_hat)
