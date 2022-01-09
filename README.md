@@ -5,6 +5,16 @@
 
 ---
 
+## Report:
+https://www.overleaf.com/read/ktxzttmzzpfv
+
+---
+
+## Images:
+
+In construction 🚧.
+
+<!--
 ## Question 2:
 
 <details>
@@ -37,6 +47,7 @@
   <summary>Click to expand!</summary>
 <img width="738" alt="question4_2_3" src="https://user-images.githubusercontent.com/11770916/148450712-cf677943-5fec-474a-865c-81aa7f9d5b29.png">
 </details>
+-->
 
 *Version 0.1*
 
