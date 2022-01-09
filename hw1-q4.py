@@ -149,7 +149,7 @@ def plot(epochs, plottable, ylabel='', name=''):
     plt.savefig(f'images_q4/%s.png' % (name), bbox_inches='tight')
 
 
-def main(args):
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('model',
                         choices=['logistic_regression', 'mlp'],
@@ -169,8 +169,7 @@ def main(args):
     parser.add_argument('-optimizer',
                         choices=['sgd', 'adam'], default='sgd')
     parser.add_argument('-prefix', default="")
-    opt = parser.parse_args(shlex.split(argumentos))
-    print("args: ", opt)
+    opt = parser.parse_args()
 
     utils.configure_seed(seed=42)
 
@@ -232,26 +231,4 @@ def main(args):
 
 
 if __name__ == '__main__':
-    #default = 'mlp -prefix=default'
-    #dropout_05 = 'mlp -dropout=0.5 -prefix=0_5-dropout'
-    #hidden_size_100='mlp -hidden_sizes=100 -prefix=hiddenSize-100'
-    #learning_rate_0_1='mlp -learning_rate=0.1 -prefix=0_1-learningRate'
-    #learning_rate_0_001='mlp -learning_rate=0.001 -prefix=0_001-learningRate'
-    #layers_3 = 'mlp -layers=3 -prefix=3-layers'
-    #activationTanh = 'mlp -activation=tanh -prefix=tanh'
-
-    #main(args=default)
-    #main(args=dropout_05)
-    #main(args=hidden_size_100)
-    #main(args=learning_rate_0_1)
-    #main(args=learning_rate_0_001)
-    #main(args=layers_3)
-    #main(args=activationTanh)
-
-    logisticRegression_0_1 = 'logistic_regression -learning_rate=0.1 -prefix=0_1-learningRate'
-    #logisticRegression_0_01 = 'logistic_regression -learning_rate=0.01 -prefix=0_01-learningRate'
-    logisticRegression_0_001 = 'logistic_regression -learning_rate=0.001 -prefix=0_001-learningRate'
-
-    main(args=logisticRegression_0_1)
-    #main(args=logisticRegression_0_01)
-    main(args=logisticRegression_0_001)
+    main()

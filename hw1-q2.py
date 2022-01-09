@@ -103,11 +103,11 @@ class NeuralRegression(_RegressionModel):
         This function makes an update to the model weights
         """
 
-        def predict_inner(X):
-            z_1_inner = self.w1 @ X + self.b1
+        def predict_inner(x_inner):
+            z_1_inner = np.dot(self.w1, x_inner) + self.b1
             h_z_1 = relu(z_1_inner)
 
-            z_2 = self.w2 @ h_z_1 + self.b2
+            z_2 = np.dot(self.w2, h_z_1) + self.b2
             return z_2
 
         x_i = np.reshape(x_i, (x_i.shape[0], 1))
@@ -115,10 +115,10 @@ class NeuralRegression(_RegressionModel):
         z_1 = (self.w1 @ x_i) + self.b1
         y_hat_minus_y = np.asarray(predict_inner(x_i)) - y_i
 
-        loss_w2 = y_hat_minus_y @ relu(z_1).T
+        loss_w2 =np.dot(y_hat_minus_y, relu(z_1).T)
         loss_b2 = y_hat_minus_y
 
-        loss_w1 = ((self.w2.T @ y_hat_minus_y) * relu_derivate(z_1)) @ x_i.T
+        loss_w1 = np.dot((np.dot(self.w2.T, y_hat_minus_y) * relu_derivate(z_1)), x_i.T)
         loss_b1 = np.multiply(np.dot(self.w2.T, y_hat_minus_y), relu_derivate(z_1))
 
         self.b2 = self.b2 - learning_rate * loss_b2
