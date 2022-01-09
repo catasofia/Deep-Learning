@@ -96,57 +96,59 @@ class NeuralRegression(_RegressionModel):
         self.w2 = np.random.normal(0.1, 0.1, (1, hidden))
         self.b2 = np.zeros((1, 1))
 
+    def relu(self, vec):
+        return np.maximum(vec, 0)
+
+    def relu_derivate(self, vec):
+        return np.where(vec <= 0, 0, 1)
+
     def update_weight(self, x_i, y_i, learning_rate=0.001):
         """
         x_i, y_i: a single training example
-
         This function makes an update to the model weights
         """
 
-        def predict_inner(x_inner):
-            z_1_inner = np.dot(self.w1, x_inner) + self.b1
-            h_z_1 = relu(z_1_inner)
-
-            z_2 = np.dot(self.w2, h_z_1) + self.b2
-            return z_2
-
         x_i = np.reshape(x_i, (x_i.shape[0], 1))
 
-        z_1 = np.dot(self.w1, x_i) + self.b1
-        y_hat_minus_y = np.asarray(predict_inner(x_i)) - y_i
+        z1 = self.w1.dot(x_i) + self.b1
+        a1 = self.relu(z1)
 
-        loss_w2 =np.dot(y_hat_minus_y, relu(z_1).T)
-        loss_b2 = y_hat_minus_y
+        z2 = self.w2.dot(a1) + self.b2
 
-        loss_w1 = np.dot((np.dot(self.w2.T, y_hat_minus_y) * relu_derivate(z_1)), x_i.T)
-        loss_b1 = np.multiply(np.dot(self.w2.T, y_hat_minus_y), relu_derivate(z_1))
+        grad_z2 = np.asarray(z2 - y_i)
 
-        self.b2 = self.b2 - learning_rate * loss_b2
-        self.b1 = self.b1 - learning_rate * loss_b1
-        self.w2 = self.w2 - learning_rate * loss_w2
-        self.w1 = self.w1 - learning_rate * loss_w1
+        grad_w2 = grad_z2.dot(a1.T)
+        grad_b2 = grad_z2
+
+        grad_a1 = self.w2.T.dot(grad_z2)
+        grad_z1 = grad_a1 * self.relu_derivate(z1)
+        grad_w1 = grad_z1.dot(x_i.T)
+        grad_b1 = grad_z1
+
+        self.b2 -= learning_rate * grad_b2
+        self.w2 -= learning_rate * grad_w2
+        self.b1 -= learning_rate * grad_b1
+        self.w1 -= learning_rate * grad_w1
 
     def predict(self, X):
         """
         X: a (n_points x n_feats) matrix.
-
         This function runs the forward pass of the model, returning yhat, a
         vector of size n_points that contains the predicted values for X.
-
         This function will be called by evaluate(), which is called at the end
         of each epoch in the training loop. It should not be used by
         update_weight because it returns only the final output of the network,
         not any of the intermediate values needed to do backpropagation.
         """
+
         y_hat = []
         for x_i in X:
             x_i = np.reshape(x_i, (x_i.shape[0], 1))
-            z_1 = np.dot(self.w1, x_i) + self.b1
-            h_z_1 = np.maximum(z_1, 0)
-            z_2 = np.dot(self.w2, h_z_1) + self.b2
-            # This is the output, without any function, since we are on a regression problem!
-            y_hat.append(z_2.tolist()[0][0])
-        return list(y_hat)
+            z1 = self.w1.dot(x_i) + self.b1
+            a1 = self.relu(z1)
+            z2 = self.w2.dot(a1) + self.b2
+            y_hat.append(z2.tolist()[0][0])
+        return y_hat
 
 
 def plot(epochs, train_loss, test_loss):

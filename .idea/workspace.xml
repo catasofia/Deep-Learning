@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53301f04-a2d0-4e5b-9cbf-af2c7427145f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/hw1-q2.py" beforeDir="false" afterPath="$PROJECT_DIR$/hw1-q2.py" afterDir="false" />
-    </list>
+    <list default="true" id="53301f04-a2d0-4e5b-9cbf-af2c7427145f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +39,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
-  <component name="RunManager" selected="Python.hw1-q2">
+  <component name="RunManager" selected="Python.main">
     <configuration name="hw1-q2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -269,6 +267,7 @@
       <workItem from="1641666533842" duration="2251000" />
       <workItem from="1641729585782" duration="1428000" />
       <workItem from="1641733590313" duration="291000" />
+      <workItem from="1641734915962" duration="12000" />
     </task>
     <servers />
   </component>
