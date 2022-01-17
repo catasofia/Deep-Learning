@@ -109,7 +109,6 @@ class NeuralRegression(_RegressionModel):
         """
 
         x_i = np.reshape(x_i, (x_i.shape[0], 1))
-
         z1 = self.w1.dot(x_i) + self.b1
         a1 = self.relu(z1)
 
