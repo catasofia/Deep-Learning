@@ -57,7 +57,7 @@ class Perceptron(LinearModel):
         # Q3.1a
        
         y_hat = self.predict(x_i)
-        if(y_hat != y_i):
+        if y_hat != y_i:
             self.W[y_i] += x_i
             self.W[y_hat] -= x_i
 
@@ -246,8 +246,10 @@ def main():
     print(test_accs)
 
     plot(epochs, valid_accs, test_accs)
-    plt.savefig(f'images_q3/%s.png' % opt.model, bbox_inches='tight')
+    # plt.savefig(f'images_q3/%s.png' % opt.model, bbox_inches='tight')
     plt.show()
+
+    print("Obtained loss for validation set: {} | for test set: {}".format(valid_accs[-1], test_accs[-1]))
 
 if __name__ == '__main__':
     main()
