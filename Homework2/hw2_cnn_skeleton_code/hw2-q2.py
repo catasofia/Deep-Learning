@@ -27,22 +27,19 @@ class CNN(nn.Module):
         """
         super(CNN, self).__init__()
 
-        self.c1 = nn.Conv2d(in_channels = 1, out_channels = 16, kernel_size = 3, stride = 1, padding = 1)
-        self.r1 = nn.ReLU()
-        self.m1 = nn.MaxPool2d(kernel_size = 2, stride = 2)
-
-        """ self.convblock1 = nn.Sequential(
-            #nn.Unflatten(0, torch.Size([28,28])),
+        self.convblock1 = nn.Sequential(
             #padding = (f-1)/2
             nn.Conv2d(in_channels = 1, out_channels = 16, kernel_size = 3, stride = 1, padding = 1),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size = 2, stride = 2)
-        ) """
+        )
+
         self.convblock2 = nn.Sequential(
             nn.Conv2d(in_channels = 16, out_channels = 32, kernel_size = 3, stride = 1, padding = 0),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size = 2, stride = 2)
         )
+
         self.transformation1 = nn.Linear(in_features = 1152, out_features = 600)
         self.dropout = nn.Dropout(p = 0.2)
         self.transformation2 = nn.Linear(in_features = 600, out_features = 120)
@@ -65,19 +62,16 @@ class CNN(nn.Module):
         forward pass -- this is enough for it to figure out how to do the
         backward pass.
         """
-        #x_i = x_i.unsqueeze(0)
-        x_i = x
-        x_i = self.c1(x_i)
-        x_i = self.r1(x_i)
-        x_i = self.m1(x_i)
-        x_i = self.convblock2(x_i)
-        x_i = torch.flatten(x_i, 1)
-        x_i = self.transformation1(x_i)
-        x_i = self.dropout(x_i)
-        x_i = self.transformation2(x_i)
-        x_i = self.transformation3(x_i)
-        x_i = self.logSoftmax(x_i)
-        return x_i
+
+        x = self.convblock1(x)
+        x = self.convblock2(x)
+        x = torch.flatten(x, 1)
+        x = self.transformation1(x)
+        x = self.dropout(x)
+        x = self.transformation2(x)
+        x = self.transformation3(x)
+        x = self.logSoftmax(x)
+        return x
         
 
 def train_batch(X, y, model, optimizer, criterion, **kwargs):
