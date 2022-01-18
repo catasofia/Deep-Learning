@@ -15,8 +15,9 @@ import numpy as np
 
 import utils
 
+
 class CNN(nn.Module):
-    
+
     def __init__(self):
         """
         The __init__ should be used to declare what kind of layers and other
@@ -28,24 +29,26 @@ class CNN(nn.Module):
         super(CNN, self).__init__()
 
         self.convblock1 = nn.Sequential(
-            #padding = (f-1)/2
-            nn.Conv2d(in_channels = 1, out_channels = 16, kernel_size = 3, stride = 1, padding = 1),
+            # padding = (f-1)/2
+            nn.Conv2d(in_channels=1, out_channels=16, kernel_size=3, stride=1, padding=1),
             nn.ReLU(),
-            nn.MaxPool2d(kernel_size = 2, stride = 2)
+            nn.MaxPool2d(kernel_size=2, stride=2)
         )
 
         self.convblock2 = nn.Sequential(
-            nn.Conv2d(in_channels = 16, out_channels = 32, kernel_size = 3, stride = 1, padding = 0),
+            nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, stride=1, padding=0),
             nn.ReLU(),
-            nn.MaxPool2d(kernel_size = 2, stride = 2)
+            nn.MaxPool2d(kernel_size=2, stride=2)
         )
 
-        self.transformation1 = nn.Linear(in_features = 1152, out_features = 600)
-        self.dropout = nn.Dropout(p = 0.2)
-        self.transformation2 = nn.Linear(in_features = 600, out_features = 120)
-        self.transformation3 = nn.Linear(in_features = 120, out_features = 10)
-        self.logSoftmax = nn.LogSoftmax(dim = 1) 
-        
+        self.transformation1 = nn.Linear(in_features=1152, out_features=600)
+        self.relu3 = nn.ReLU()
+        self.dropout = nn.Dropout(p=0.2)
+        self.transformation2 = nn.Linear(in_features=600, out_features=120)
+        self.relu4 = nn.ReLU()
+        self.transformation3 = nn.Linear(in_features=120, out_features=10)
+        self.logSoftmax = nn.LogSoftmax(dim=1)
+
     def forward(self, x):
         """
         x (batch_size x n_channels x height x width): a batch of training 
@@ -62,17 +65,18 @@ class CNN(nn.Module):
         forward pass -- this is enough for it to figure out how to do the
         backward pass.
         """
-
         x = self.convblock1(x)
         x = self.convblock2(x)
         x = torch.flatten(x, 1)
         x = self.transformation1(x)
+        x = self.relu3(x)
         x = self.dropout(x)
         x = self.transformation2(x)
+        x = self.relu4(x)
         x = self.transformation3(x)
         x = self.logSoftmax(x)
         return x
-        
+
 
 def train_batch(X, y, model, optimizer, criterion, **kwargs):
     """
@@ -134,7 +138,7 @@ def plot_kernels(convolutional_layer_1, convolutional_layer_2, name_1='', name_2
     # normalize to (0,1) for better visualization
     kernels_l1 = kernels_l1 - kernels_l1.min()
     kernels_l1 = kernels_l1 / kernels_l1.max()
-    filter_img_l1 = torchvision.utils.make_grid(kernels_l1, nrow = 8)
+    filter_img_l1 = torchvision.utils.make_grid(kernels_l1, nrow=8)
     # change ordering as matplotlib expects data as (H, W, C)
     plt.clf()
     plt.imshow(filter_img_l1.permute(1, 2, 0))
@@ -145,7 +149,7 @@ def plot_kernels(convolutional_layer_1, convolutional_layer_2, name_1='', name_2
     # normalize to (0,1) for better visualization
     kernels_l2 = kernels_l2 - kernels_l2.min()
     kernels_l2 = kernels_l2 / kernels_l2.max()
-    filter_img_l2 = torchvision.utils.make_grid(torch.from_numpy(np.expand_dims(kernels_l2[:,0,:,:],1)), nrow = 8)
+    filter_img_l2 = torchvision.utils.make_grid(torch.from_numpy(np.expand_dims(kernels_l2[:, 0, :, :], 1)), nrow=8)
     # change ordering as matplotlib expects data as (H, W, C)
     plt.clf()
     plt.imshow(filter_img_l2.permute(1, 2, 0))
@@ -167,7 +171,7 @@ def main():
                         choices=['sgd', 'adam'], default='sgd')
     parser.add_argument('-convlayer1', help="""Variable name holding the 1st convolutional layer.""")
     parser.add_argument('-convlayer2', help="""Variable name holding the 2nd convolutional layer.""")
-    
+
     opt = parser.parse_args()
 
     utils.configure_seed(seed=42)
@@ -181,7 +185,7 @@ def main():
 
     # initialize the model
     model = CNN()
-    
+
     # get an optimizer
     optims = {"adam": torch.optim.Adam, "sgd": torch.optim.SGD}
 
@@ -189,10 +193,10 @@ def main():
     optimizer = optim_cls(
         model.parameters(), lr=opt.learning_rate, weight_decay=opt.l2_decay
     )
-    
+
     # get a loss criterion
     criterion = nn.NLLLoss()
-    
+
     # training loop
     epochs = np.arange(1, opt.epochs + 1)
     train_mean_losses = []
@@ -218,11 +222,13 @@ def main():
 
     plot(epochs, train_mean_losses, ylabel='Loss', name='CNN-training-loss-{}'.format(config))
     plot(epochs, valid_accs, ylabel='Accuracy', name='CNN-validation-accuracy-{}'.format(config))
-    
+
     if (opt.convlayer1 and opt.convlayer2) is not None:
         conv_layer_1_viz = eval('model.' + opt.convlayer1)
         conv_layer_2_viz = eval('model.' + opt.convlayer2)
-        plot_kernels(conv_layer_1_viz, conv_layer_2_viz, name_1='CNN-conv_layer_1_filters-{}'.format(config), name_2='CNN-conv_layer_2_filters-{}'.format(config))
+        plot_kernels(conv_layer_1_viz, conv_layer_2_viz, name_1='CNN-conv_layer_1_filters-{}'.format(config),
+                     name_2='CNN-conv_layer_2_filters-{}'.format(config))
+
 
 if __name__ == '__main__':
     main()
