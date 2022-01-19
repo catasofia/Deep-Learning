@@ -41,8 +41,10 @@ class CNN(nn.Module):
         )
 
         self.transformation1 = nn.Linear(in_features = 1152, out_features = 600)
-        self.dropout = nn.Dropout(p = 0.2)
+        self.relu3 = nn.ReLU()
+        self.dropout = nn.Dropout2d(p = 0.2)
         self.transformation2 = nn.Linear(in_features = 600, out_features = 120)
+        self.relu4 = nn.ReLU()
         self.transformation3 = nn.Linear(in_features = 120, out_features = 10)
         self.logSoftmax = nn.LogSoftmax(dim = 1) 
         
@@ -67,8 +69,10 @@ class CNN(nn.Module):
         x = self.convblock2(x)
         x = torch.flatten(x, 1)
         x = self.transformation1(x)
+        x = self.relu3(x)
         x = self.dropout(x)
         x = self.transformation2(x)
+        x = self.relu4(x)
         x = self.transformation3(x)
         x = self.logSoftmax(x)
         return x

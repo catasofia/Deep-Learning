@@ -1,0 +1,3 @@
+Final Test acc -> learning rate = 0.01 => 0,9043
+Final Test acc -> learning rate = 0.1 => 0,8937
+Final Test acc -> learning rate = 0.001 => 0,8455
