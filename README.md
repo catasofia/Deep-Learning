@@ -11,5 +11,5 @@ Deep Learning 2021/2022
 ### Grade
 Solution | Description | Code 			   	| Report | Grade
 | :-------------: | :-------------: | :-----------------: | :-------------: | :-------------: |
-|  Homework 1    | [Homework 1 Description](https://github.com/catasofia/Deep-Learning/blob/main/Homework1/homework1.pdf) |   | [Report](https://github.com/catasofia/Deep-Learning/blob/main/Homework1/report.pdf) | *98* / 100 |
+|  Homework 1    | [Homework 1 Description](https://github.com/catasofia/Deep-Learning/blob/main/Homework1/homework1.pdf) | [Code](https://github.com/catasofia/Deep-Learning/tree/main/Homework1/code)  | [Report](https://github.com/catasofia/Deep-Learning/blob/main/Homework1/report.pdf) | *98* / 100 |
 |  Homework 2    | [Homework 2 Description](https://github.com/catasofia/Deep-Learning/blob/main/Homework2/homework2.pdf) | [Code](https://github.com/catasofia/Deep-Learning/tree/main/Homework2/code) | [Report](https://github.com/catasofia/Deep-Learning/blob/main/Homework2/report.pdf) | *100* / 100 |
