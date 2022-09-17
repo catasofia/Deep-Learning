@@ -1,54 +1,15 @@
-<img src="https://user-images.githubusercontent.com/11770916/146428163-a6f82506-c18b-4e0a-9517-207432de7f00.png" width="640" height="320">
+<a href="http://fenix.tecnico.ulisboa.pt"><img align="right" src="https://fenix.tecnico.ulisboa.pt/api/bennu-portal/configuration/logo" alt="Fenix Tecnico"></a>
 
-# Deep Learning Homeworks
-## Repository with the homework resolutions for the Deep Learning course for 2021-2022:
+# DL_21-22
+Deep Learning 2021/2022
 
----
+#### Group 1
+- [Catarina Sousa](https://github.com/catasofia)
+- [Gonçalo Falcão](https://github.com/falc00)
+- [Miguel Ferreira](https://github.com/miguel-arrf)
 
-## Report:
-https://www.overleaf.com/read/ktxzttmzzpfv
-
----
-
-## Images:
-
-In construction 🚧.
-
-<!--
-## Question 2:
-
-<details>
-  <summary>Click to expand!</summary>
-  <img width="746" alt="question2" src="https://user-images.githubusercontent.com/11770916/148449819-d2d0b9e1-654a-4646-867d-a37042a7ef3c.png">
-  <img width="577" alt="question2_NN" src="https://user-images.githubusercontent.com/11770916/148449847-972c7e41-2aec-4fc1-bf02-701aade0c68c.png">
-</details>
-
----
-
-## Question 3:
-
-<details>
-  <summary>Click to expand!</summary>
-  <img width="1176" alt="question3" src="https://user-images.githubusercontent.com/11770916/148449872-2a543c7a-172e-43b2-a8b2-37e76f9d44ea.png">
-</details>
-
----
-
-## Question 4:
-
-### Question 4.1:
-<details>
-  <summary>Click to expand!</summary>
-<img width="738" alt="question4_1" src="https://user-images.githubusercontent.com/11770916/148450704-89ed8b23-aadc-41b8-a724-1010ff8303c7.png">
-</details>
-
-### Question 4.2 and 4.3:
-<details>
-  <summary>Click to expand!</summary>
-<img width="738" alt="question4_2_3" src="https://user-images.githubusercontent.com/11770916/148450712-cf677943-5fec-474a-865c-81aa7f9d5b29.png">
-</details>
--->
-
-*Version 0.1*
-
-
+### Grade
+Solution | Description | Code 			   	| Report | Grade
+| :-------------: | :-------------: | :-----------------: | :-------------: | :-------------: |
+|  Homework 1    | [Homework 1 Description](https://github.com/catasofia/Deep-Learning/blob/main/Homework1/homework1.pdf) |   | [Report](https://github.com/catasofia/Deep-Learning/blob/main/Homework1/report.pdf) | *98* / 100 |
+|  Homework 2    | [Homework 2 Description](https://github.com/catasofia/Deep-Learning/blob/main/Homework2/homework2.pdf) | [Code](https://github.com/catasofia/Deep-Learning/tree/main/Homework2/code) | [Report](https://github.com/catasofia/Deep-Learning/blob/main/Homework2/report.pdf) | *100* / 100 |
